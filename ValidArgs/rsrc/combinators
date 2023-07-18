@@ -1,0 +1,14 @@
+[(I x), x]
+[(K x y), x]
+[(S x y z), (x z (y z))]
+[(V x y z), (z x y)]
+[(C x y z), (x z y)]
+[(W x y), (x y y)]
+[(B x y z), (x (y z))]
+[(T x y), (y x)]
+[0, I]
+[Suc, (V (K I))]
+[Pred, (C (W (B B (C (T K) I))) (K I))]
+(Suc 0)
+(Suc (Suc 0))
+(Pred (Suc (Suc (Suc 0))))

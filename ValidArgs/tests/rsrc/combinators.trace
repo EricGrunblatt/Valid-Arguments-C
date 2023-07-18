@@ -1,0 +1,391 @@
+# [(I x), x]
+# [(K x y), x]
+# [(S x y z), (x z (y z))]
+# [(V x y z), (z x y)]
+# [(C x y z), (x z y)]
+# [(W x y), (x y y)]
+# [(B x y z), (x (y z))]
+# [(T x y), (y x)]
+# [0, I]
+# [Suc, (V (K I))]
+# [Pred, (C (W (B B (C (T K) I))) (K I))]
+# (Suc 0)
+(Suc 0)
+.Suc
+.Suc
+==> rule: [Suc, (V (K I))], subst: .
+.(V (K I))
+..V
+..(K I)
+...K
+...I
+.0
+.0
+==> rule: [0, I], subst: .
+.I
+# (Suc (Suc 0))
+(Suc (Suc 0))
+.Suc
+.Suc
+==> rule: [Suc, (V (K I))], subst: .
+.(V (K I))
+..V
+..(K I)
+...K
+...I
+.(Suc 0)
+..Suc
+..Suc
+==> rule: [Suc, (V (K I))], subst: .
+..(V (K I))
+...V
+...(K I)
+....K
+....I
+..0
+..0
+==> rule: [0, I], subst: .
+..I
+# (Pred (Suc (Suc (Suc 0))))
+(Pred (Suc (Suc (Suc 0))))
+.Pred
+.Pred
+==> rule: [Pred, (C (W (B B (C (T K) I))) (K I))], subst: .
+.(C (W (B B (C (T K) I))) (K I))
+..(C (W (B B (C (T K) I))))
+...C
+...(W (B B (C (T K) I)))
+....W
+....(B B (C (T K) I))
+.....(B B)
+......B
+......B
+.....(C (T K) I)
+......(C (T K))
+.......C
+.......(T K)
+........T
+........K
+......I
+..(K I)
+...K
+...I
+.(Suc (Suc (Suc 0)))
+..Suc
+..Suc
+==> rule: [Suc, (V (K I))], subst: .
+..(V (K I))
+...V
+...(K I)
+....K
+....I
+..(Suc (Suc 0))
+...Suc
+...Suc
+==> rule: [Suc, (V (K I))], subst: .
+...(V (K I))
+....V
+....(K I)
+.....K
+.....I
+...(Suc 0)
+....Suc
+....Suc
+==> rule: [Suc, (V (K I))], subst: .
+....(V (K I))
+.....V
+.....(K I)
+......K
+......I
+....0
+....0
+==> rule: [0, I], subst: .
+....I
+(C (W (B B (C (T K) I))) (K I) (V (K I) (V (K I) (V (K I) I))))
+==> rule: [(C x y z), (x z y)], subst: [z, (V (K I) (V (K I) (V (K I) I)))] [y, (K I)] [x, (W (B B (C (T K) I)))] .
+(W (B B (C (T K) I)) (V (K I) (V (K I) (V (K I) I))) (K I))
+.(W (B B (C (T K) I)) (V (K I) (V (K I) (V (K I) I))))
+..(W (B B (C (T K) I)))
+...W
+...(B B (C (T K) I))
+....(B B)
+.....B
+.....B
+....(C (T K) I)
+.....(C (T K))
+......C
+......(T K)
+.......T
+.......K
+.....I
+..(V (K I) (V (K I) (V (K I) I)))
+...(V (K I))
+....V
+....(K I)
+.....K
+.....I
+...(V (K I) (V (K I) I))
+....(V (K I))
+.....V
+.....(K I)
+......K
+......I
+....(V (K I) I)
+.....(V (K I))
+......V
+......(K I)
+.......K
+.......I
+.....I
+.(W (B B (C (T K) I)) (V (K I) (V (K I) (V (K I) I))))
+==> rule: [(W x y), (x y y)], subst: [y, (V (K I) (V (K I) (V (K I) I)))] [x, (B B (C (T K) I))] .
+.(B B (C (T K) I) (V (K I) (V (K I) (V (K I) I))) (V (K I) (V (K I) (V (K I) I))))
+..(B B (C (T K) I) (V (K I) (V (K I) (V (K I) I))))
+...(B B (C (T K) I))
+....(B B)
+.....B
+.....B
+....(C (T K) I)
+.....(C (T K))
+......C
+......(T K)
+.......T
+.......K
+.....I
+...(V (K I) (V (K I) (V (K I) I)))
+....(V (K I))
+.....V
+.....(K I)
+......K
+......I
+....(V (K I) (V (K I) I))
+.....(V (K I))
+......V
+......(K I)
+.......K
+.......I
+.....(V (K I) I)
+......(V (K I))
+.......V
+.......(K I)
+........K
+........I
+......I
+..(B B (C (T K) I) (V (K I) (V (K I) (V (K I) I))))
+==> rule: [(B x y z), (x (y z))], subst: [z, (V (K I) (V (K I) (V (K I) I)))] [y, (C (T K) I)] [x, B] .
+..(B (C (T K) I (V (K I) (V (K I) (V (K I) I)))))
+...B
+...(C (T K) I (V (K I) (V (K I) (V (K I) I))))
+....(C (T K) I)
+.....(C (T K))
+......C
+......(T K)
+.......T
+.......K
+.....I
+....(V (K I) (V (K I) (V (K I) I)))
+.....(V (K I))
+......V
+......(K I)
+.......K
+.......I
+.....(V (K I) (V (K I) I))
+......(V (K I))
+.......V
+.......(K I)
+........K
+........I
+......(V (K I) I)
+.......(V (K I))
+........V
+........(K I)
+.........K
+.........I
+.......I
+...(C (T K) I (V (K I) (V (K I) (V (K I) I))))
+==> rule: [(C x y z), (x z y)], subst: [z, (V (K I) (V (K I) (V (K I) I)))] [y, I] [x, (T K)] .
+...(T K (V (K I) (V (K I) (V (K I) I))) I)
+....(T K (V (K I) (V (K I) (V (K I) I))))
+.....(T K)
+......T
+......K
+.....(V (K I) (V (K I) (V (K I) I)))
+......(V (K I))
+.......V
+.......(K I)
+........K
+........I
+......(V (K I) (V (K I) I))
+.......(V (K I))
+........V
+........(K I)
+.........K
+.........I
+.......(V (K I) I)
+........(V (K I))
+.........V
+.........(K I)
+..........K
+..........I
+........I
+....(T K (V (K I) (V (K I) (V (K I) I))))
+==> rule: [(T x y), (y x)], subst: [y, (V (K I) (V (K I) (V (K I) I)))] [x, K] .
+....(V (K I) (V (K I) (V (K I) I)) K)
+.....(V (K I) (V (K I) (V (K I) I)))
+......(V (K I))
+.......V
+.......(K I)
+........K
+........I
+......(V (K I) (V (K I) I))
+.......(V (K I))
+........V
+........(K I)
+.........K
+.........I
+.......(V (K I) I)
+........(V (K I))
+.........V
+.........(K I)
+..........K
+..........I
+........I
+.....K
+....(V (K I) (V (K I) (V (K I) I)) K)
+==> rule: [(V x y z), (z x y)], subst: [z, K] [y, (V (K I) (V (K I) I))] [x, (K I)] .
+....(K (K I) (V (K I) (V (K I) I)))
+.....(K (K I))
+......K
+......(K I)
+.......K
+.......I
+.....(V (K I) (V (K I) I))
+......(V (K I))
+.......V
+.......(K I)
+........K
+........I
+......(V (K I) I)
+.......(V (K I))
+........V
+........(K I)
+.........K
+.........I
+.......I
+....(K (K I) (V (K I) (V (K I) I)))
+==> rule: [(K x y), x], subst: [y, (V (K I) (V (K I) I))] [x, (K I)] .
+....(K I)
+.....K
+.....I
+....I
+...(K I I)
+==> rule: [(K x y), x], subst: [y, I] [x, I] .
+...I
+..(V (K I) (V (K I) (V (K I) I)))
+...(V (K I))
+....V
+....(K I)
+.....K
+.....I
+...(V (K I) (V (K I) I))
+....(V (K I))
+.....V
+.....(K I)
+......K
+......I
+....(V (K I) I)
+.....(V (K I))
+......V
+......(K I)
+.......K
+.......I
+.....I
+.(K I)
+..K
+..I
+(B I (V (K I) (V (K I) (V (K I) I))) (K I))
+==> rule: [(B x y z), (x (y z))], subst: [z, (K I)] [y, (V (K I) (V (K I) (V (K I) I)))] [x, I] .
+(I (V (K I) (V (K I) (V (K I) I)) (K I)))
+.I
+.(V (K I) (V (K I) (V (K I) I)) (K I))
+..(V (K I) (V (K I) (V (K I) I)))
+...(V (K I))
+....V
+....(K I)
+.....K
+.....I
+...(V (K I) (V (K I) I))
+....(V (K I))
+.....V
+.....(K I)
+......K
+......I
+....(V (K I) I)
+.....(V (K I))
+......V
+......(K I)
+.......K
+.......I
+.....I
+..(K I)
+...K
+...I
+.(V (K I) (V (K I) (V (K I) I)) (K I))
+==> rule: [(V x y z), (z x y)], subst: [z, (K I)] [y, (V (K I) (V (K I) I))] [x, (K I)] .
+.(K I (K I) (V (K I) (V (K I) I)))
+..(K I (K I))
+...(K I)
+....K
+....I
+...(K I)
+....K
+....I
+..(K I (K I))
+==> rule: [(K x y), x], subst: [y, (K I)] [x, I] .
+..I
+..(V (K I) (V (K I) I))
+...(V (K I))
+....V
+....(K I)
+.....K
+.....I
+...(V (K I) I)
+....(V (K I))
+.....V
+.....(K I)
+......K
+......I
+....I
+.(I (V (K I) (V (K I) I)))
+==> rule: [(I x), x], subst: [x, (V (K I) (V (K I) I))] .
+.(V (K I) (V (K I) I))
+..(V (K I))
+...V
+...(K I)
+....K
+....I
+..(V (K I) I)
+...(V (K I))
+....V
+....(K I)
+.....K
+.....I
+...I
+(I (V (K I) (V (K I) I)))
+==> rule: [(I x), x], subst: [x, (V (K I) (V (K I) I))] .
+(V (K I) (V (K I) I))
+.(V (K I))
+..V
+..(K I)
+...K
+...I
+.(V (K I) I)
+..(V (K I))
+...V
+...(K I)
+....K
+....I
+..I
+(V (K I) I)
+(V (K I) (V (K I) I))
+(V (K I) (V (K I) I))
